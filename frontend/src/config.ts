@@ -1,5 +1,5 @@
 // API URL configuration
-export const API_URL = 'http://localhost:3002/api';
+export const API_URL = 'https://evoltsoft-project-self.vercel.app/api';
 
 // Map configuration
 export const MAP_CONFIG = {
