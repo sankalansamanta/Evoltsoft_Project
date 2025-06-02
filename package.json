@@ -1,0 +1,13 @@
+{
+  "name": "evoltsoft_project",
+  "version": "1.0.0",
+  "description": "This is a full-stack application built with Node.js, Express, and a database backend, along with a Vue.js frontend. It allows users to register, login, and manage electric vehicle charging stations with full CRUD operations. The frontend provides a list view and map visualization of charging stations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
