@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import aaxios from 'axios';
+import axios from 'axios';
 
 import { useStationsStore } from '../../stores/stations';
 import { useAuthStore } from '../../stores/auth';
@@ -47,16 +47,24 @@ onMounted(async () => {
     }
 
     // Fetch dashboard data with authentication
-    const response = await aaxios.get('/api/dashboard', {
+    const response = await axios.get('/api/dashboard', {
       headers: { Authorization: `Bearer ${token}` },
     });
-
+console.log("Full dashboard response:", response.data);
+    const data = response.data.data || response.data;
+    console.log("Dashboard data:", data);
     // Store dashboard data
-    recentStations.value = response.data.recentStations || [];
-    activeStationsCount.value = response.data.activeStationsCount || 0;
-    inactiveStationsCount.value = response.data.inactiveStationsCount || 0;
-    maintenanceStationsCount.value = response.data.maintenanceStationsCount || 0;
-  console.log('Dashboard data loaded successfully');
+    // activeStationsCount.value = data.activeStationsCount ?? 0;
+    // inactiveStationsCount.value = data.inactiveStationsCount ?? 0;
+    
+  activeStationsCount.value = stationsStore.stations.filter(s => s.status === 'active').length;
+  inactiveStationsCount.value = stationsStore.stations.filter(s => s.status === 'inactive').length;
+  maintenanceStationsCount.value = stationsStore.stations.filter(s => s.status === 'maintenance').length;
+    // maintenanceStationsCount.value = data.maintenanceStationsCount ?? 0;
+    recentStations.value = data.recentStations || [];
+
+    console.log('Dashboard data loaded successfully:', response.data.activeStationsCount);
+
   } catch (error) {
     console.error('Failed to load dashboard data:', error);
   } finally {
