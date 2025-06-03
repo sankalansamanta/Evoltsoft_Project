@@ -47,9 +47,10 @@ onMounted(async () => {
     }
 
     // Fetch dashboard data with authentication
-    const response = await axios.get('/api/dashboard', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await axios.get('/dashboard', {
+  headers: { Authorization: `Bearer ${token}` },
+});
+
 console.log("Full dashboard response:", response.data);
     const data = response.data.data || response.data;
     console.log("Dashboard data:", data);
