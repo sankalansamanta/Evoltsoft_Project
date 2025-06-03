@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3002;
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://test-project-frontend-test.vercel.app'
+  'https://evoltsoft-project-15jh.vercel.app'
 ];
 
 app.use(cors({
