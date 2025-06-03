@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 3002;
 
 const allowedOrigins = [
   'http://localhost:5173',
+  'https://evoltsoft-project-1.onrender.com',
   'https://evoltsoft-project-15jh.vercel.app'
 ];
 

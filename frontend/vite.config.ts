@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/dashboard': {
-        target: 'https://evoltsoft-project.onrender.com', //ekhane backend server er URL dite hobe
+        target: 'https://evoltsoft-project.onrender.com', 
         changeOrigin: true,
         rewrite: path => path.replace(/^\/dashboard/, '/api/dashboard'),
       }
