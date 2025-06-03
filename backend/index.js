@@ -53,17 +53,19 @@ app.use('/api/auth', authRoutes);
 app.use('/api/stations', stationRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
-// Connect to database and start server
-connectDB()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
+// Connect to database and start server (only when not running serverless)
+if (process.env.IS_SERVERLESS !== 'true') {
+  connectDB()
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
+      });
+    })
+    .catch((error) => {
+      console.error('❌ Failed to connect to database:', error);
+      process.exit(1);
     });
-  })
-  .catch((error) => {
-    console.error('❌ Failed to connect to database:', error);
-    process.exit(1);
-  });
+}
 
 // Global error handler
 app.use((err, req, res, next) => {
@@ -75,3 +77,7 @@ app.use((err, req, res, next) => {
 });
 
 export default app;
+
+// Add serverless handler export for Vercel deployment
+import serverless from 'serverless-http';
+export const handler = serverless(app);
