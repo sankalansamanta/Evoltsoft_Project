@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
+import aaxios from 'axios';
 
 import { useStationsStore } from '../../stores/stations';
 import { useAuthStore } from '../../stores/auth';
@@ -47,7 +47,7 @@ onMounted(async () => {
     }
 
     // Fetch dashboard data with authentication
-    const response = await axios.get('/api/dashboard', {
+    const response = await aaxios.get('/api/dashboard', {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -56,7 +56,7 @@ onMounted(async () => {
     activeStationsCount.value = response.data.activeStationsCount || 0;
     inactiveStationsCount.value = response.data.inactiveStationsCount || 0;
     maintenanceStationsCount.value = response.data.maintenanceStationsCount || 0;
-
+  console.log('Dashboard data loaded successfully');
   } catch (error) {
     console.error('Failed to load dashboard data:', error);
   } finally {

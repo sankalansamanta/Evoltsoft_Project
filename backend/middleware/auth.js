@@ -15,7 +15,7 @@ export const authMiddleware = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
     
     // Find user associated with token
     const user = await User.findById(decoded.id).select('-password');
